@@ -14,9 +14,9 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx mkdir /home/student/ssl
     sudo ssh nginx chown --recursive student:student /home/student/ssl
     sudo scp /tmp/nsd_files/INTRO/hosts_nginx nginx:/etc/hosts
-    sudo scp /tmp/nsd_files/SECURITY/api_server.conf nginx:/etc/nginx/conf.d/api_server.orig
-    sudo scp /tmp/nsd_files/SECURITY/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
-    sudo scp /tmp/nsd_files/SECURITY/dhparam.pem nginx:/etc/nginx/dhparam.pem
+    sudo scp /tmp/nsd_files/HTTPS/api_server.conf nginx:/etc/nginx/conf.d/api_server.orig
+    sudo scp /tmp/nsd_files/HTTPS/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
+    sudo scp /tmp/nsd_files/HTTPS/dhparam.pem nginx:/etc/nginx/dhparam.pem
     sudo scp /tmp/nsd_files/LIMITS/api_server.conf nginx:/etc/nginx/conf.d/api_server.conf
     sudo scp /tmp/nsd_files/LIMITS/juice.conf nginx:/etc/nginx/conf.d/juice.conf
     sudo scp /tmp/nsd_files/LIMITS/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
