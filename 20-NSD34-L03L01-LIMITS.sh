@@ -13,13 +13,13 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx mkdir /etc/nginx/ssl-configs
     sudo ssh nginx mkdir /home/student/ssl
     sudo ssh nginx chown --recursive student:student /home/student/ssl
-    sudo scp /tmp/nsd_files/L1-L1-Intro/hosts_nginx nginx:/etc/hosts
-    sudo scp /tmp/nsd_files/L2-L2-SecUp/api_server.conf nginx:/etc/nginx/conf.d/api_server.orig
-    sudo scp /tmp/nsd_files/L2-L2-SecUp/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
-    sudo scp /tmp/nsd_files/L2-L2-SecUp/dhparam.pem nginx:/etc/nginx/dhparam.pem
-    sudo scp /tmp/nsd_files/L3-L1-RateLimit/api_server.conf nginx:/etc/nginx/conf.d/api_server.conf
-    sudo scp /tmp/nsd_files/L3-L1-RateLimit/juice.conf nginx:/etc/nginx/conf.d/juice.conf
-    sudo scp /tmp/nsd_files/L3-L1-RateLimit/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
+    sudo scp /tmp/nsd_files/INTRO/hosts_nginx nginx:/etc/hosts
+    sudo scp /tmp/nsd_files/SECURITY/api_server.conf nginx:/etc/nginx/conf.d/api_server.orig
+    sudo scp /tmp/nsd_files/SECURITY/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
+    sudo scp /tmp/nsd_files/SECURITY/dhparam.pem nginx:/etc/nginx/dhparam.pem
+    sudo scp /tmp/nsd_files/LIMITS/api_server.conf nginx:/etc/nginx/conf.d/api_server.conf
+    sudo scp /tmp/nsd_files/LIMITS/juice.conf nginx:/etc/nginx/conf.d/juice.conf
+    sudo scp /tmp/nsd_files/LIMITS/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
 
     # configure certificates on host nginx
     sudo scp /tmp/nsd_files/certs/ca-cert.crt nginx:/etc/nginx/ssl/ca-cert.crt
@@ -37,7 +37,7 @@ PS4='+$(date +"%T.%3N"): '
 
 # Lab 3 Exercise 2 Logs
 ## I don't think we need this file - I think lab steps have them create it and since we'll be using the same lab system it should be there
-    #sudo scp /tmp/nsd_files/L3-L2-Logs/juice.PRElimits nginx:/etc/nginx/conf.d/juice.PRElimits
+    #sudo scp /tmp/nsd_files/LIMITS/juice.PRElimits nginx:/etc/nginx/conf.d/juice.PRElimits
 
 # Lab 3 Exercise 3 IP Deny
 ## I don't think we need any new files they should all be there because lab system is continuous now
@@ -50,5 +50,5 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx nginx
 
     # update local hosts file
-    sudo mv /tmp/nsd_files/L1-L1-Intro/hosts_jump /etc/hosts
+    sudo mv /tmp/nsd_files/INTRO/hosts_jump /etc/hosts
  
