@@ -12,14 +12,14 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx mkdir /etc/nginx/ssl-configs
     sudo ssh nginx mkdir /home/student/ssl
     sudo ssh nginx chown --recursive student:student /home/student/ssl
-    sudo scp /tmp/nsd_files/L1-L1-Intro/hosts_nginx nginx:/etc/hosts
-    sudo scp /tmp/nsd_files/L2-L2-SecUp/api_server.conf nginx:/etc/nginx/conf.d/api_server.orig
-    sudo scp /tmp/nsd_files/L2-L2-SecUp/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
-    sudo scp /tmp/nsd_files/L2-L2-SecUp/dhparam.pem nginx:/etc/nginx/dhparam.pem
-    sudo scp /tmp/nsd_files/L6-L1-SecAPI/api_server.conf nginx:/etc/nginx/conf.d/api_server.conf
-    sudo scp /tmp/nsd_files/L6-L1-SecAPI/juice.conf nginx:/etc/nginx/conf.d/juice.conf
-    sudo scp /tmp/nsd_files/L6-L1-SecAPI/nginx.conf nginx:/etc/nginx/nginx.conf
-    sudo scp /tmp/nsd_files/L6-L1-SecAPI/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
+    sudo scp /tmp/nsd_files/INTRO/hosts_nginx nginx:/etc/hosts
+    sudo scp /tmp/nsd_files/HTTPS/api_server.conf nginx:/etc/nginx/conf.d/api_server.orig
+    sudo scp /tmp/nsd_files/HTTPS/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
+    sudo scp /tmp/nsd_files/HTTPS/dhparam.pem nginx:/etc/nginx/dhparam.pem
+    sudo scp /tmp/nsd_files/API/api_server.conf nginx:/etc/nginx/conf.d/api_server.conf
+    sudo scp /tmp/nsd_files/API/juice.conf nginx:/etc/nginx/conf.d/juice.conf
+    sudo scp /tmp/nsd_files/API/nginx.conf nginx:/etc/nginx/nginx.conf
+    sudo scp /tmp/nsd_files/API/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
 
     # add certificate to nginx server on nginx host
     sudo scp /tmp/nsd_files/certs/ca-cert.crt nginx:/etc/nginx/ssl/ca-cert.crt
@@ -40,5 +40,5 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx nginx
 
     # update local hosts files
-    sudo mv /tmp/nsd_files/L1-L1-Intro/hosts_jump /etc/hosts
+    sudo mv /tmp/nsd_files/INTRO/hosts_jump /etc/hosts
  
