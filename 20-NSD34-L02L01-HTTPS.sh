@@ -27,31 +27,31 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx chmod +x /home/student/curl_script.sh
     sudo ssh nginx chown student:student /home/student/curl_script.sh
    #### NEED TO ADD STEP TO LAB to rename SecUp_juice.bak to juice.conf OR just the steps to add what we need to juice.conf
-   # sudo scp /tmp/nsd_files/SECURITY/juice.conf            nginx:/etc/nginx/conf.d/juice.conf
-    sudo scp /tmp/nsd_files/SECURITY/SecUp_juice.conf      nginx:/etc/nginx/conf.d/SecUp_juice.bak
+   # sudo scp /tmp/nsd_files/HTTPS/juice.conf            nginx:/etc/nginx/conf.d/juice.conf
+    sudo scp /tmp/nsd_files/HTTPS/SecUp_juice.conf      nginx:/etc/nginx/conf.d/SecUp_juice.bak
    #### NEED TO ADD STEP TO LAB to rename SecUp_api_server.bak to api_server.conf.conf 
-   # sudo scp /tmp/nsd_files/SECURITY/api_server.conf       nginx:/etc/nginx/conf.d/api_server.conf
-    sudo scp /tmp/nsd_files/SECURITY/SecUp_api_server.bak       nginx:/etc/nginx/conf.d/SecUp_api_server.bak
+   # sudo scp /tmp/nsd_files/HTTPS/api_server.conf       nginx:/etc/nginx/conf.d/api_server.conf
+    sudo scp /tmp/nsd_files/HTTPS/SecUp_api_server.bak       nginx:/etc/nginx/conf.d/SecUp_api_server.bak
   #### NEED TO ADD STEP TO LAB to rename proxy-ssl-params.bak to SecUp-proxy-ssl-params.conf.conf
-   # sudo scp /tmp/nsd_files/SECURITY/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
-    sudo scp /tmp/nsd_files/SECURITY/SecUp_ssl-params.bak       nginx:/etc/nginx/ssl-configs/SecUp_ssl-params.bak
+   # sudo scp /tmp/nsd_files/HTTPS/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
+    sudo scp /tmp/nsd_files/HTTPS/SecUp_ssl-params.bak       nginx:/etc/nginx/ssl-configs/SecUp_ssl-params.bak
   #### NEED TO ADD STEP TO LAB to rename SecUp_proxy-ssl-params.bak to SecUp_proxy-ssl-params.conf 
-   # sudo scp /tmp/nsd_files/SECURITY/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf    
-   sudo scp /tmp/nsd_files/SECURITY/SecUp_proxy-ssl-params.bak nginx:/etc/nginx/ssl-configs/SecUp_proxy-ssl-params.bak    
+   # sudo scp /tmp/nsd_files/HTTPS/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf    
+   sudo scp /tmp/nsd_files/HTTPS/SecUp_proxy-ssl-params.bak nginx:/etc/nginx/ssl-configs/SecUp_proxy-ssl-params.bak    
  
   #### NEED TO ADD STEP TO LAB to rename SecUp_dhparam.pem to dhparam.pem 
   #### PROBABLY don't need this since they will have created this file in part 1 of lab 2
-  # sudo scp /tmp/nsd_files/SECURITY/SecUp_dhparam.pem           nginx:/etc/nginx/SecUp_dhparam.pem
+  # sudo scp /tmp/nsd_files/HTTPS/SecUp_dhparam.pem           nginx:/etc/nginx/SecUp_dhparam.pem
 
 #### OR MAYBE A SIMPLER SETUP, create a new directory /etc/nginx/SecureUpstreams
     sudo ssh nginx mkdir /etc/nginx/SecureUpstreams
-    sudo scp /tmp/nsd_files/SECURITY/juice.conf                nginx:/etc/nginx/SecureUpstreams/juice.conf
-    sudo scp /tmp/nsd_files/SECURITY/api_server.conf           nginx:/etc/nginx/SecureUpstreams/api_server.conf
-    sudo scp /tmp/nsd_files/SECURITY/ssl-params.conf           nginx:/etc/nginx/SecureUpstreams/ssl-params.conf
-    sudo scp /tmp/nsd_files/SECURITY/proxy-ssl-params.conf     nginx:/etc/nginx/SecureUpstreams/proxy-ssl-params.conf    
+    sudo scp /tmp/nsd_files/HTTPS/juice.conf                nginx:/etc/nginx/SecureUpstreams/juice.conf
+    sudo scp /tmp/nsd_files/HTTPS/api_server.conf           nginx:/etc/nginx/SecureUpstreams/api_server.conf
+    sudo scp /tmp/nsd_files/HTTPS/ssl-params.conf           nginx:/etc/nginx/SecureUpstreams/ssl-params.conf
+    sudo scp /tmp/nsd_files/HTTPS/proxy-ssl-params.conf     nginx:/etc/nginx/SecureUpstreams/proxy-ssl-params.conf    
      
 #### PROBABLY don't need this since they will have created this file in part 1 of lab 2
-    #sudo scp /tmp/nsd_files/SECURITY/dhparam.pem           nginx:/etc/nginx/SecureUpstreams/dhparam.pem
+    #sudo scp /tmp/nsd_files/HTTPS/dhparam.pem           nginx:/etc/nginx/SecureUpstreams/dhparam.pem
     
     # copy cert files to nginx
     ##### PROBABLY DON'T NEED THESE FILES SINCE create in part 1 of Lab2 HTTPS
