@@ -5,6 +5,7 @@ PS4='+$(date +"%T.%3N"): '
 # update nginx host for the specific lab
 # pull files from github, prep directories on nginx and copy files to nginx
     cd /tmp
+    #REPLACE the following line with a curl stmt to download just the files we need for lab - look at scp commands below for help
     git clone https://github.com/learnf5/nsd.git nsd_files
     sudo ssh nginx rm /etc/nginx/conf.d/default.conf
     sudo ssh nginx mkdir /etc/nginx/ssl
@@ -15,6 +16,7 @@ PS4='+$(date +"%T.%3N"): '
     sudo scp /tmp/nsd_files/INTRO/hosts_nginx nginx:/etc/hosts
     sudo scp /tmp/nsd_files/scripts/create_certs.sh nginx:/home/student/ssl/create_certs.sh
     sudo ssh nginx chmod +x /home/student/ssl/create_certs.sh
+    #probably don't need to change ownership since done earlier...
     sudo ssh nginx chown student:student /home/student/ssl/create_certs.sh
     sudo scp /tmp/nsd_files/HTTPS/juice.conf nginx:/etc/nginx/conf.d/juice.conf
     sudo scp /tmp/nsd_files/HTTPS/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
