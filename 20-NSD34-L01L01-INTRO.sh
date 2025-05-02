@@ -3,7 +3,9 @@ set -x
 PS4='+$(date +"%T.%3N"): '
 
 # update lab environment
+
 # pull files from github
+echo $COURSE_ID
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/INTRO/juice.conf
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/INTRO/hosts_jump
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/INTRO/hosts_nginx
@@ -20,5 +22,5 @@ PS4='+$(date +"%T.%3N"): '
     sudo scp /tmp/nsd_files/INTRO/juice.conf  nginx:/etc/nginx/conf.d/juice.conf
 
 # update local hosts file on jump system
-    sudo mv /tmp/nsd_files/INTRO/hosts_jump /etc/hosts
+    sudo cp /tmp/nsd_files/INTRO/hosts_jump /etc/hosts
  
