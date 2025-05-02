@@ -12,9 +12,12 @@ PS4='+$(date +"%T.%3N"): '
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/proxy-ssl-params.bak
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_jump
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_nginx
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/create_certs.sh
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/curl_script.sh
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/upload.sh
 
-  
-  sudo ssh nginx rm /etc/nginx/conf.d/default.conf
+# prepare files on nginx
+    sudo ssh nginx rm /etc/nginx/conf.d/default.conf
     sudo ssh nginx mkdir /etc/nginx/ssl
     sudo ssh nginx chown --recursive nginx:nginx /etc/nginx/ssl
     sudo ssh nginx mkdir /etc/nginx/ssl-configs
@@ -36,32 +39,29 @@ PS4='+$(date +"%T.%3N"): '
  ####   COULD create new directory /etc/nginx/SecUp and put the files that were used in Securing Upstream there 
  ####   which I'm calling SecUp_filename.bak...and then either copy the file need to /etc/nginx/conf.d/ or add in with include directive
  # pull files from github, prep directories on nginx and copy files to nginx
-    sudo scp /tmp/nsd_files/scripts/curl_script.sh            nginx:/home/student/curl_script.sh
+    sudo scp /tmp/curl_script.sh            nginx:/home/student/curl_script.sh
     sudo ssh nginx chmod +x /home/student/curl_script.sh
     sudo ssh nginx chown student:student /home/student/curl_script.sh
    #### NEED TO ADD STEP TO LAB to rename SecUp_juice.bak to juice.conf OR just the steps to add what we need to juice.conf
-   # sudo scp /tmp/nsd_files/HTTPS/juice.conf            nginx:/etc/nginx/conf.d/juice.conf
-    sudo scp /tmp/nsd_files/HTTPS/SecUp_juice.conf      nginx:/etc/nginx/conf.d/SecUp_juice.bak
+    sudo scp /tmp/SecUp_juice.conf      nginx:/etc/nginx/conf.d/SecUp_juice.bak
    #### NEED TO ADD STEP TO LAB to rename SecUp_api_server.bak to api_server.conf.conf 
-   # sudo scp /tmp/nsd_files/HTTPS/api_server.conf       nginx:/etc/nginx/conf.d/api_server.conf
-    sudo scp /tmp/nsd_files/HTTPS/SecUp_api_server.bak       nginx:/etc/nginx/conf.d/SecUp_api_server.bak
+    sudo scp /tmp/SecUp_api_server.bak       nginx:/etc/nginx/conf.d/SecUp_api_server.bak
   #### NEED TO ADD STEP TO LAB to rename proxy-ssl-params.bak to SecUp-proxy-ssl-params.conf.conf
-   # sudo scp /tmp/nsd_files/HTTPS/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
-    sudo scp /tmp/nsd_files/HTTPS/SecUp_ssl-params.bak       nginx:/etc/nginx/ssl-configs/SecUp_ssl-params.bak
+    sudo scp /tmp/SecUp_ssl-params.bak       nginx:/etc/nginx/ssl-configs/SecUp_ssl-params.bak
   #### NEED TO ADD STEP TO LAB to rename SecUp_proxy-ssl-params.bak to SecUp_proxy-ssl-params.conf 
    # sudo scp /tmp/nsd_files/HTTPS/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf    
-   sudo scp /tmp/nsd_files/HTTPS/SecUp_proxy-ssl-params.bak nginx:/etc/nginx/ssl-configs/SecUp_proxy-ssl-params.bak    
+   sudo scp /tmp/SecUp_proxy-ssl-params.bak nginx:/etc/nginx/ssl-configs/SecUp_proxy-ssl-params.bak    
  
   #### NEED TO ADD STEP TO LAB to rename SecUp_dhparam.pem to dhparam.pem 
   #### PROBABLY don't need this since they will have created this file in part 1 of lab 2
-  # sudo scp /tmp/nsd_files/HTTPS/SecUp_dhparam.pem           nginx:/etc/nginx/SecUp_dhparam.pem
+  # sudo scp /tmp/SecUp_dhparam.pem           nginx:/etc/nginx/SecUp_dhparam.pem
 
 #### OR MAYBE A SIMPLER SETUP, create a new directory /etc/nginx/SecureUpstreams
-    sudo ssh nginx mkdir /etc/nginx/SecureUpstreams
-    sudo scp /tmp/nsd_files/HTTPS/juice.conf                nginx:/etc/nginx/SecureUpstreams/juice.conf
-    sudo scp /tmp/nsd_files/HTTPS/api_server.conf           nginx:/etc/nginx/SecureUpstreams/api_server.conf
-    sudo scp /tmp/nsd_files/HTTPS/ssl-params.conf           nginx:/etc/nginx/SecureUpstreams/ssl-params.conf
-    sudo scp /tmp/nsd_files/HTTPS/proxy-ssl-params.conf     nginx:/etc/nginx/SecureUpstreams/proxy-ssl-params.conf    
+  #  sudo ssh nginx mkdir /etc/nginx/SecureUpstreams
+  #  sudo scp /tmp/juice.conf               nginx:/etc/nginx/SecureUpstreams/juice.conf
+  # sudo scp /tmp/api_server.conf           nginx:/etc/nginx/SecureUpstreams/api_server.conf
+  # sudo scp /tmp/ssl-params.conf           nginx:/etc/nginx/SecureUpstreams/ssl-params.conf
+  # sudo scp /tmp/proxy-ssl-params.conf     nginx:/etc/nginx/SecureUpstreams/proxy-ssl-params.conf    
      
 #### PROBABLY don't need this since they will have created this file in part 1 of lab 2
     #sudo scp /tmp/nsd_files/HTTPS/dhparam.pem           nginx:/etc/nginx/SecureUpstreams/dhparam.pem
@@ -80,10 +80,6 @@ PS4='+$(date +"%T.%3N"): '
     #sudo scp /tmp/nsd_files/certs/ca-cert-dashboard.crt      nginx:/etc/nginx/ssl/ca-cert-dashboard.crt
     #sudo scp /tmp/nsd_files/certs/www.nginxdashboard.com.crt nginx:/etc/nginx/ssl/www.nginxdashboard.com.crt
     #sudo scp /tmp/nsd_files/certs/www.nginxdashboard.com.key nginx:/etc/nginx/ssl/www.nginxdashboard.com.key    
-    
-    # restart nginx on nginx host
-    sudo ssh nginx nginx -s stop
-    sudo ssh nginx nginx
 
     # update local hosts file
-    sudo mv /tmp/nsd_files/INTRO/hosts_jump /etc/hosts
+    sudo mv /tmp/hosts_jump /etc/hosts
