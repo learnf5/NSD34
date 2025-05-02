@@ -8,7 +8,7 @@ PS4='+$(date +"%T.%3N"): '
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/LIMITS/juice.conf    
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/LIMITS/ssl-params.conf
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/LIMITS/api_server.conf
-   
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/proxy-ssl-params.conf
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_jump
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_nginx    
     
@@ -25,24 +25,24 @@ PS4='+$(date +"%T.%3N"): '
     sudo scp /tmp/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
 
     # Do not think we need these because will be created in lab
-    #sudo scp /tmp/dhparam.pem nginx:/etc/nginx/dhparam.pem
+    # sudo scp /tmp/dhparam.pem nginx:/etc/nginx/dhparam.pem
     # sudo scp /tmp/api_server.conf nginx:/etc/nginx/conf.d/api_server.orig
     # sudo scp /tmp/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
 
     
     # configure certificates on host nginx
-    #sudo scp /tmp/nsd_files/certs/ca-cert.crt nginx:/etc/nginx/ssl/ca-cert.crt
-    #sudo scp /tmp/nsd_files/certs/ca-cert.crt nginx:/home/student/ssl/ca-cert.crt
-    #sudo scp /tmp/nsd_files/certs/ca-cert.key nginx:/home/student/ssl/ca-cert.key
-    #sudo scp /tmp/nsd_files/certs/ca-cert.srl nginx:/home/student/ssl/ca-cert.srl
-    #sudo scp /tmp/nsd_files/certs/www.nginxtraining.com.crt nginx:/etc/nginx/ssl/www.nginxtraining.com.crt
-    #sudo scp /tmp/nsd_files/certs/www.nginxtraining.com.crt nginx:/home/student/ssl/www.nginxtraining.com.crt
-    #sudo scp /tmp/nsd_files/certs/www.nginxtraining.com.key nginx:/etc/nginx/ssl/www.nginxtraining.com.key
-    #sudo scp /tmp/nsd_files/certs/www.nginxtraining.com.key nginx:/home/student/ssl/www.nginxtraining.com.key
-    #sudo scp /tmp/nsd_files/certs/www.nginxtraining.com.csr nginx:/home/student/ssl/www.nginxtraining.com.csr
-    #sudo scp /tmp/nsd_files/certs/ca-cert-dashboard.crt nginx:/etc/nginx/ssl/ca-cert-dashboard.crt
-    #sudo scp /tmp/nsd_files/certs/www.nginxdashboard.com.crt nginx:/etc/nginx/ssl/www.nginxdashboard.com.crt
-    #sudo scp /tmp/nsd_files/certs/www.nginxdashboard.com.key nginx:/etc/nginx/ssl/www.nginxdashboard.com.key
+    #sudo scp /tmp/ca-cert.crt nginx:/etc/nginx/ssl/ca-cert.crt
+    #sudo scp /tmp/ca-cert.crt nginx:/home/student/ssl/ca-cert.crt
+    #sudo scp /tmp/ca-cert.key nginx:/home/student/ssl/ca-cert.key
+    #sudo scp /tmp/ca-cert.srl nginx:/home/student/ssl/ca-cert.srl
+    #sudo scp /tmp/www.nginxtraining.com.crt nginx:/etc/nginx/ssl/www.nginxtraining.com.crt
+    #sudo scp /tmp/www.nginxtraining.com.crt nginx:/home/student/ssl/www.nginxtraining.com.crt
+    #sudo scp /tmp/www.nginxtraining.com.key nginx:/etc/nginx/ssl/www.nginxtraining.com.key
+    #sudo scp /tmp/www.nginxtraining.com.key nginx:/home/student/ssl/www.nginxtraining.com.key
+    #sudo scp /tmp/www.nginxtraining.com.csr nginx:/home/student/ssl/www.nginxtraining.com.csr
+    #sudo scp /tmp/ca-cert-dashboard.crt nginx:/etc/nginx/ssl/ca-cert-dashboard.crt
+    #sudo scp /tmp/www.nginxdashboard.com.crt nginx:/etc/nginx/ssl/www.nginxdashboard.com.crt
+    #sudo scp /tmp/www.nginxdashboard.com.key nginx:/etc/nginx/ssl/www.nginxdashboard.com.key
 
 # Lab 3 Exercise 2 Logs
 ## I don't think we need this file - I think lab steps have them create it and since we'll be using the same lab system it should be there
@@ -55,5 +55,5 @@ PS4='+$(date +"%T.%3N"): '
 ## I don't think we need any new files they should all be there because lab system is continuous now
 
     # update local hosts file
-    sudo mv /tmp/nsd_files/INTRO/hosts_jump /etc/hosts
+    sudo mv /tmp/hosts_jump /etc/hosts
  
