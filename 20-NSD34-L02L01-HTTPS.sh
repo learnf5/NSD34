@@ -3,23 +3,34 @@ set -x
 PS4='+$(date +"%T.%3N"): '
 
 # update nginx host for the specific lab
-# pull files from github, prep directories on nginx and copy files to nginx
-    cd /tmp
-    #REPLACE the following line with a curl stmt to download just the files we need for lab - look at scp commands below for help
-    git clone https://github.com/learnf5/nsd.git nsd_files
-    sudo ssh nginx rm /etc/nginx/conf.d/default.conf
+# pull files from github
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/juice.conf
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/juice_SecUp.bak
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/api_server.conf
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/ssl-params.conf
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/ssl-params-SecUp.conf
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/proxy-ssl-params.bak
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_jump
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_nginx
+
+  
+  sudo ssh nginx rm /etc/nginx/conf.d/default.conf
     sudo ssh nginx mkdir /etc/nginx/ssl
     sudo ssh nginx chown --recursive nginx:nginx /etc/nginx/ssl
     sudo ssh nginx mkdir /etc/nginx/ssl-configs
     sudo ssh nginx mkdir /home/student/ssl
     sudo ssh nginx chown --recursive student:student /home/student/ssl
-    sudo scp /tmp/nsd_files/INTRO/hosts_nginx nginx:/etc/hosts
-    sudo scp /tmp/nsd_files/scripts/create_certs.sh nginx:/home/student/ssl/create_certs.sh
+
+# copy files to nginx
+    sudo scp /tmp/hosts_nginx nginx:/etc/hosts
+    sudo scp /tmp/create_certs.sh nginx:/home/student/ssl/create_certs.sh
     sudo ssh nginx chmod +x /home/student/ssl/create_certs.sh
     #probably don't need to change ownership since done earlier...
     sudo ssh nginx chown student:student /home/student/ssl/create_certs.sh
-    sudo scp /tmp/nsd_files/HTTPS/juice.conf nginx:/etc/nginx/conf.d/juice.conf
-    sudo scp /tmp/nsd_files/HTTPS/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
+    sudo scp /tmp/juice.conf nginx:/etc/nginx/conf.d/juice.conf
+    sudo scp /tmp/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
+
+# prep directories on nginx
 
  ####   FOR COMBINING L201-HTTPS & L02L02-SecUp - make sure whatever did in L2L01-HTTPS works for start up of SecUp
  ####   COULD create new directory /etc/nginx/SecUp and put the files that were used in Securing Upstream there 
