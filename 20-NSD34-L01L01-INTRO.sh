@@ -18,9 +18,9 @@ echo $COURSE_ID
 # copy files to nginx
 
     sudo ssh nginx rm /etc/nginx/conf.d/default.conf
-    sudo scp /tmp/nsd_files/INTRO/hosts_nginx nginx:/etc/hosts
-    sudo scp /tmp/nsd_files/INTRO/juice.conf  nginx:/etc/nginx/conf.d/juice.conf
+    sudo scp /tmp/hosts_nginx nginx:/etc/hosts
+    sudo scp /tmp/juice.conf  nginx:/etc/nginx/conf.d/juice.conf
 
 # update local hosts file on jump system
-    sudo cp /tmp/nsd_files/INTRO/hosts_jump /etc/hosts
+    sudo cp /tmp/hosts_jump /etc/hosts
  
