@@ -10,7 +10,9 @@ PS4='+$(date +"%T.%3N"): '
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/LIMITS/api_server.conf
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/proxy-ssl-params.conf
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_jump
-    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_nginx    
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/hosts_nginx
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/dhparam.pem
+    
     
     # prepare nginx files and directories
     sudo ssh nginx rm /etc/nginx/conf.d/default.conf
@@ -24,12 +26,13 @@ PS4='+$(date +"%T.%3N"): '
     sudo scp /tmp/juice.conf nginx:/etc/nginx/conf.d/juice.conf
     sudo scp /tmp/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
 
-    # Do not think we need these because will be created in lab
-    # sudo scp /tmp/dhparam.pem nginx:/etc/nginx/dhparam.pem
+    sudo scp /tmp/dhparam.pem nginx:/etc/nginx/dhparam.pem
     # sudo scp /tmp/api_server.conf nginx:/etc/nginx/conf.d/api_server.orig
     # sudo scp /tmp/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
 
     
+    ###MUST ADD THESE FILES to github so can download here for this lab
+    ####GET Damian or Lee to help
     # configure certificates on host nginx
     #sudo scp /tmp/ca-cert.crt nginx:/etc/nginx/ssl/ca-cert.crt
     #sudo scp /tmp/ca-cert.crt nginx:/home/student/ssl/ca-cert.crt
