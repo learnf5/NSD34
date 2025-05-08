@@ -59,12 +59,10 @@ PS4='+$(date +"%T.%3N"): '
 #### OR MAYBE A SIMPLER SETUP, create a new directory /etc/nginx/SecureUpstreams
   #  sudo ssh nginx mkdir /etc/nginx/SecureUpstreams
   #  sudo scp /tmp/juice.conf               nginx:/etc/nginx/SecureUpstreams/juice.conf
-  # sudo scp /tmp/api_server.conf           nginx:/etc/nginx/SecureUpstreams/api_server.conf
+  #this file is needed in new ex. 6
+  sudo scp /tmp/api_server.conf           nginx:/etc/nginx/SecureUpstreams/api_server.conf
   # sudo scp /tmp/ssl-params.conf           nginx:/etc/nginx/SecureUpstreams/ssl-params.conf
   # sudo scp /tmp/proxy-ssl-params.conf     nginx:/etc/nginx/SecureUpstreams/proxy-ssl-params.conf    
-     
-#### PROBABLY don't need this since they will have created this file in part 1 of lab 2
-    #sudo scp /tmp/nsd_files/HTTPS/dhparam.pem           nginx:/etc/nginx/SecureUpstreams/dhparam.pem
     
     # copy cert files to nginx
     ##### PROBABLY DON'T NEED THESE FILES SINCE create in part 1 of Lab2 HTTPS
