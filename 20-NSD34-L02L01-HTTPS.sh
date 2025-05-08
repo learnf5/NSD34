@@ -43,7 +43,7 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx chmod +x /home/student/curl_script.sh
     sudo ssh nginx chown student:student /home/student/curl_script.sh
    #### NEED TO ADD STEP TO LAB to rename SecUp_juice.bak to juice.conf OR just the steps to add what we need to juice.conf
-    sudo scp /tmp/juice_SecUp.conf      nginx:/etc/nginx/conf.d/SecUp_juice.bak
+    sudo scp /tmp/juice_SecUp.bak      nginx:/etc/nginx/conf.d/SecUp_juice.bak
    #### NEED TO ADD STEP TO LAB to rename SecUp_api_server.bak to api_server.conf.conf 
     #sudo scp /tmp/SecUp_api_server.bak       nginx:/etc/nginx/conf.d/SecUp_api_server.bak
   #### NEED TO ADD STEP TO LAB to rename proxy-ssl-params.bak to SecUp-proxy-ssl-params.conf.conf
