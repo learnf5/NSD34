@@ -9,12 +9,21 @@ PS4='+$(date +"%T.%3N"): '
     #Changed lab steps to have students create this file rather than just add stuff to the file
     #curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/api_server.conf
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/ssl-params.conf
-    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/ssl-params-SecUp.conf
-    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/proxy-ssl-params.conf    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/INTRO/hosts_jump
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/INTRO/hosts_jump
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/INTRO/hosts_nginx
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/SCRIPTS/create_certs.sh
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/SCRIPTS/curl_script.sh
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/SCRIPTS/upload.sh
+
+ #Changed lab steps to have students create this file rather than just add stuff to the file
+    #curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/api_server.conf
+    
+    # I don't think we need this file
+    # curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/ssl-params-SecUp.conf    
+
+    # IF don't need this backup file then delete it and the scp command below
+        curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/HTTPS/proxy-ssl-params.bak    
+
 
 # prepare files on nginx
     sudo ssh nginx rm /etc/nginx/conf.d/default.conf
@@ -43,14 +52,15 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx chmod +x /home/student/curl_script.sh
     sudo ssh nginx chown student:student /home/student/curl_script.sh
    #### NEED TO ADD STEP TO LAB to rename SecUp_juice.bak to juice.conf OR just the steps to add what we need to juice.conf
-    sudo scp /tmp/juice_SecUp.bak      nginx:/etc/nginx/conf.d/SecUp_juice.bak
+   # I don't think we need this file for lab
+   # sudo scp /tmp/juice_SecUp.bak      nginx:/etc/nginx/conf.d/SecUp_juice.bak
    #### NEED TO ADD STEP TO LAB to rename SecUp_api_server.bak to api_server.conf.conf 
     #sudo scp /tmp/SecUp_api_server.bak       nginx:/etc/nginx/conf.d/SecUp_api_server.bak
   #### NEED TO ADD STEP TO LAB to rename proxy-ssl-params.bak to SecUp-proxy-ssl-params.conf.conf
-    sudo scp /tmp/ssl-params-SecUp.conf       nginx:/etc/nginx/ssl-configs/ssl-params-SecUp.bak
+    #sudo scp /tmp/ssl-params-SecUp.conf       nginx:/etc/nginx/ssl-configs/ssl-params-SecUp.bak
   #### NEED TO ADD STEP TO LAB to rename SecUp_proxy-ssl-params.bak to SecUp_proxy-ssl-params.conf 
    # sudo scp /tmp/nsd_files/HTTPS/proxy-ssl-params.bak nginx:/etc/nginx/ssl-configs/proxy-ssl-params.bak    
-   sudo scp /tmp/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf    
+   sudo scp /tmp/proxy-ssl-params.bak nginx:/etc/nginx/ssl-configs/proxy-ssl-params.bak    
  
   #### NEED TO ADD STEP TO LAB to rename SecUp_dhparam.pem to dhparam.pem 
   #### PROBABLY don't need this since they will have created this file in part 1 of lab 2
@@ -59,13 +69,13 @@ PS4='+$(date +"%T.%3N"): '
 #### OR MAYBE A SIMPLER SETUP, create a new directory /etc/nginx/SecureUpstreams
   #  sudo ssh nginx mkdir /etc/nginx/SecureUpstreams
   #  sudo scp /tmp/juice.conf               nginx:/etc/nginx/SecureUpstreams/juice.conf
-  #this file is needed in new ex. 6
+  #this file is needed in new ex. 6 api_server.conf file not needed - students will create it
   sudo scp /tmp/api_server.conf           nginx:/etc/nginx/SecureUpstreams/api_server.conf
   # sudo scp /tmp/ssl-params.conf           nginx:/etc/nginx/SecureUpstreams/ssl-params.conf
   # sudo scp /tmp/proxy-ssl-params.conf     nginx:/etc/nginx/SecureUpstreams/proxy-ssl-params.conf    
     
     # copy cert files to nginx
-    ##### PROBABLY DON'T NEED THESE FILES SINCE create in part 1 of Lab2 HTTPS
+    ##### PROBABLY DON'T NEED THESE FILES SINCE create in part 1 of Lab2 HTTPS BUT will need these for all future labs (3, 5, & 6)
     #sudo scp /tmp/nsd_files/certs/ca-cert.crt                nginx:/etc/nginx/ssl/ca-cert.crt
     #sudo scp /tmp/nsd_files/certs/ca-cert.crt                nginx:/home/student/ssl/ca-cert.crt
     #sudo scp /tmp/nsd_files/certs/ca-cert.key                nginx:/home/student/ssl/ca-cert.key
