@@ -17,6 +17,7 @@ PS4='+$(date +"%T.%3N"): '
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/DASHBOARD/www*
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/ca-cert.*
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/www*
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/SCRIPTS/*.sh
 
     # prepare nginx files and directories
     sudo ssh nginx rm /etc/nginx/conf.d/default.conf
@@ -25,12 +26,18 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx chown --recursive nginx:nginx /etc/nginx/ssl
     sudo ssh nginx mkdir /etc/nginx/ssl-configs
     sudo ssh nginx mkdir /home/student/ssl
+    sudo ssh nginx mkdir /home/student/ssl/DASHBOARD
     sudo ssh nginx chown --recursive student:student /home/student/ssl
     sudo scp /tmp/hosts_nginx nginx:/etc/hosts
     sudo scp /tmp/api_server.conf nginx:/etc/nginx/conf.d/api_server.conf
     sudo scp /tmp/juice.conf nginx:/etc/nginx/conf.d/juice.conf
     sudo scp /tmp/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
     sudo scp /tmp/ssl-params-dashboard.conf nginx:/etc/nginx/ssl-configs/ssl-params-dashboard.conf
+    sudo scp /tmp/create_certs.sh nginx:/home/student/ssl
+    sudo scp /tmp/curl_script.sh nginx:/home/student/ssl
+    sudo scp /tmp/upload.sh nginx:/home/student/ssl
+    sudo scp /tmp/*nginxtraining* nginx:/home/student/ssl
+    sudo scp /tmp/*nginxdashboard* nginx:/home/student/ssl/DASHBOARD
 
     sudo scp /tmp/dhparam.pem nginx:/etc/nginx/dhparam.pem
     sudo scp /tmp/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
