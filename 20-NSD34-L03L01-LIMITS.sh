@@ -30,7 +30,6 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx rm /etc/nginx/conf.d/default.conf
     sudo ssh nginx mkdir /etc/nginx/ssl
     sudo ssh nginx mkdir /etc/nginx/ssl/DASHBOARD
-    sudo ssh nginx chown --recursive nginx:nginx /etc/nginx/ssl
     sudo ssh nginx mkdir /etc/nginx/ssl-configs
     sudo ssh nginx mkdir /home/student/ssl
     sudo ssh nginx mkdir /home/student/ssl/DASHBOARD
@@ -50,10 +49,10 @@ PS4='+$(date +"%T.%3N"): '
 
     sudo scp /tmp/www.nginxdashboard.com.crt nginx:/home/student/ssl/DASHBOARD
     sudo scp /tmp/www.nginxdashboard.com.key nginx:/home/student/ssl/DASHBOARD
-    sudo scp /tmp/ca-cert-dashboard.crt nginx:/home/student/DASHBOARD/ca-cert.crt
+    sudo scp /tmp/ca-cert-dashboard.crt nginx:/home/student/ssl/DASHBOARD/ca-cert.crt
     
     sudo ssh nginx chown --recursive student:student /home/student/ssl
-
+    sudo ssh nginx chown --recursive nginx:nginx /etc/nginx/ssl
     
     sudo scp /tmp/www.nginxtraining.com.crt nginx:/etc/nginx/ssl/
     sudo scp /tmp/www.nginxtraining.com.key nginx:/etc/nginx/ssl/
