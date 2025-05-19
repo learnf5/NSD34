@@ -30,13 +30,13 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx mkdir /home/student/ssl
     
     sudo scp /tmp/hosts_nginx nginx:/etc/hosts
+    sudo scp /tmp/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
     sudo scp /tmp/ssl-params-dashboard.conf nginx:/etc/nginx/ssl-configs/ssl-params-dashboard.conf
     sudo scp /tmp/proxy-ssl-params.conf nginx:/etc/nginx/ssl-configs/proxy-ssl-params.conf
     sudo scp /tmp/dhparam.pem nginx:/etc/nginx/dhparam.pem
     sudo scp /tmp/api_server.conf nginx:/etc/nginx/conf.d/api_server.conf
     sudo scp /tmp/juice.conf nginx:/etc/nginx/conf.d/juice.conf
     sudo scp /tmp/nginx.conf nginx:/etc/nginx/nginx.conf
-    sudo scp /tmp/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
 
   ###Certificate files for www.nginxtraining.com and www.nginxdashboard.com
   
