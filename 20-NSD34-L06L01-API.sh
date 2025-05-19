@@ -26,8 +26,8 @@ PS4='+$(date +"%T.%3N"): '
     sudo ssh nginx mkdir /etc/nginx/ssl
     sudo ssh nginx mkdir /etc/nginx/ssl/DASHBOARD
     sudo ssh nginx mkdir /etc/nginx/ssl-configs
-    sudo ssh nginx mkdir /home/student/ssl/DASHBOARD
     sudo ssh nginx mkdir /home/student/ssl
+    sudo ssh nginx mkdir /home/student/ssl/DASHBOARD
     
     sudo scp /tmp/hosts_nginx nginx:/etc/hosts
     sudo scp /tmp/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
