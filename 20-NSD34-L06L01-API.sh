@@ -21,14 +21,15 @@ PS4='+$(date +"%T.%3N"): '
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/ca-cert.crt
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/www.nginxtraining.com.crt
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/www.nginxtraining.com.key
-        
-    sudo ssh nginx rm /etc/nginx/conf.d/default.conf
+
+        # Create directories on NGINX
     sudo ssh nginx mkdir /etc/nginx/ssl
-    sudo ssh nginx mkdir /etc/nginx/ssl/DASHBOARD
-    sudo ssh nginx mkdir /etc/nginx/ssl-configs
+    sudo ssh nginx mkdir -p /etc/nginx/ssl/DASHBOARD
+    sudo ssh nginx mkdir -p /etc/nginx/ssl-configs
     sudo ssh nginx mkdir /home/student/ssl
-    sudo ssh nginx mkdir /home/student/ssl/DASHBOARD
+    sudo ssh nginx mkdir -p /home/student/ssl/DASHBOARD
     
+    sudo ssh nginx rm /etc/nginx/conf.d/default.conf
     sudo scp /tmp/hosts_nginx nginx:/etc/hosts
     sudo scp /tmp/ssl-params.conf nginx:/etc/nginx/ssl-configs/ssl-params.conf
     sudo scp /tmp/ssl-params-dashboard.conf nginx:/etc/nginx/ssl-configs/ssl-params-dashboard.conf
