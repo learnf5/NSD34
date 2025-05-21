@@ -45,7 +45,7 @@ PS4='+$(date +"%T.%3N"): '
     sudo scp /tmp/www.nginxtraining.com.crt nginx:/etc/nginx/ssl/
     sudo scp /tmp/www.nginxtraining.com.key nginx:/etc/nginx/ssl/
 
-    sudo scp /tmp/ca-cert-dashboard.crt nginx:/etc/nginx/ssl/DASHBOARD/ca-cert-dashboard.crt
+    sudo scp /tmp/ca-cert-dashboard.crt nginx:/etc/nginx/ssl/DASHBOARD/ca-cert.crt
     sudo scp /tmp/www.nginxdashboard.com.crt nginx:/etc/nginx/ssl/DASHBOARD/www.nginxdashboard.com.crt
     sudo scp /tmp/www.nginxdashboard.com.key nginx:/etc/nginx/ssl/DASHBOARD/www.nginxdashboard.com.key
 
