@@ -13,6 +13,7 @@ PS4='+$(date +"%T.%3N"): '
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/INTRO/hosts_jump
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/INTRO/hosts_nginx 
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/API/nginx.conf
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/API/quotes.jwt
 
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/DASHBOARD/ca-cert-dashboard.crt
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/DASHBOARD/www.nginxdashboard.com.crt
@@ -38,6 +39,7 @@ PS4='+$(date +"%T.%3N"): '
     sudo scp /tmp/api_server.conf nginx:/etc/nginx/conf.d/api_server.conf
     sudo scp /tmp/juice.conf nginx:/etc/nginx/conf.d/juice.conf
     sudo scp /tmp/nginx.conf nginx:/etc/nginx/nginx.conf
+    sudo scp /tmp/quotes.jwt nginx:/home/student/
 
   ###Certificate files for www.nginxtraining.com and www.nginxdashboard.com
   
