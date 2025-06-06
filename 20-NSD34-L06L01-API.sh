@@ -15,6 +15,7 @@ PS4='+$(date +"%T.%3N"): '
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/API/nginx.conf
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/API/quotes.jwt
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/API/api_secret.jwk
+    curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/API/LeesQuotes.jwt
 
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/DASHBOARD/ca-cert-dashboard.crt
     curl --silent --remote-name-all --output-dir /tmp https://raw.githubusercontent.com/learnf5/$COURSE_ID/main/CERTS/DASHBOARD/www.nginxdashboard.com.crt
@@ -42,6 +43,8 @@ PS4='+$(date +"%T.%3N"): '
     sudo scp /tmp/nginx.conf nginx:/etc/nginx/nginx.conf
     sudo scp /tmp/quotes.jwt nginx:/home/student/
     sudo scp /tmp/api_secret.jwk nginx:/home/student/
+    sudo scp /tmp/LeesQuotes.jwt nginx:/home/student/
+
 
   ###Certificate files for www.nginxtraining.com and www.nginxdashboard.com
   
